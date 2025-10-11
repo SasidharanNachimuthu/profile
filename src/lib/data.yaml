@@ -1,8 +1,7 @@
 
 profile:
   name: Sasidharan N
-  bio: |
-    I’m an AI Engineer with experience in designing and deploying intelligent systems that turn complex data into actionable insights.|I specialize in applying machine learning, deep learning, and natural language processing to solve real-world business problems. Passionate about innovation, I enjoy exploring cutting-edge AI technologies to build scalable, impactful solutions that drive automation and efficiency.
+  bio: "I’m an AI Engineer with experience in designing and deploying intelligent systems that turn complex data into actionable insights.|I specialize in applying machine learning, deep learning, and natural language processing to solve real-world business problems. Passionate about innovation, I enjoy exploring cutting-edge AI technologies to build scalable, impactful solutions that drive automation and efficiency."
   avatarImageId: profile-avatar
   email: sasidharannachimuthu@gmail.com
   social:
