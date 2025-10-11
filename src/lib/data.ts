@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
+import data from './data.yaml';
 
 export type Resource = {
   id: string;
@@ -36,9 +37,8 @@ type AppData = {
     resources: Resource[];
 }
 
-const dataPath = path.join(process.cwd(), 'src', 'lib', 'data.yaml');
-const fileContents = fs.readFileSync(dataPath, 'utf8');
-const data = yaml.load(fileContents) as AppData;
 
-export const resources: Resource[] = data.resources;
-export const profile: Profile = data.profile;
+// export const resources: Resource[] = data.resources;
+// export const profile: Profile = data.profile;
+
+export const { profile, resources } = data;
