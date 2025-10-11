@@ -1,0 +1,374 @@
+
+profile:
+  name: Sasidharan N
+  bio: |
+    I’m an AI Engineer with experience in designing and deploying intelligent systems that turn complex data into actionable insights.|I specialize in applying machine learning, deep learning, and natural language processing to solve real-world business problems. Passionate about innovation, I enjoy exploring cutting-edge AI technologies to build scalable, impactful solutions that drive automation and efficiency.
+  avatarImageId: profile-avatar
+  email: sasidharannachimuthu@gmail.com
+  social:
+    github: https://github.com/SasidharanNachimuthu
+    linkedin: https://www.linkedin.com/in/sasidharannachimuthu/
+
+resources:
+  - id: '1'
+    slug: llm-powered-chatbot
+    type: project
+    title: LLM-Powered Chatbot
+    description: Developed a conversational AI chatbot for customer service using large language models, improving response times by 80%.
+    author: AI Engineer
+    date: '2024-06-01'
+    content: |
+      This project involved designing and implementing a state-of-the-art chatbot. The bot can handle complex user queries, understand context, and provide human-like responses.
+
+      **Technologies used:**
+      - Python, TensorFlow, PyTorch
+      - Natural Language Processing (NLP)
+      - Transformer architecture
+      - Fine-tuning on a custom dataset
+
+      The chatbot is now successfully integrated into the client's main application, serving thousands of users daily.
+    tags: ['Python', 'TensorFlow', 'NLP']
+    url: 'https://github.com'
+    githubUrl: 'https://github.com'
+
+  - id: '2'
+    slug: image-recognition-for-retail
+    type: project
+    title: Image Recognition for Retail
+    description: Built a computer vision model to automatically categorize products from images, achieving 95% accuracy.
+    author: AI Engineer
+    date: '2023-12-15'
+    content: |
+      This computer vision project aimed to automate the process of product tagging for an e-commerce platform.
+
+      **Key achievements:**
+      - Trained a Convolutional Neural Network (CNN) on a large dataset of product images.
+      - Implemented data augmentation techniques to improve model robustness.
+      - Deployed the model as a scalable microservice.
+
+      The solution significantly reduced manual labor and improved the consistency of product data.
+    tags: ['Computer Vision', 'PyTorch', 'CNN']
+    url: 'https://github.com'
+    githubUrl: 'https://github.com'
+
+  - id: '3'
+    slug: the-rise-of-generative-ai
+    type: blog
+    title: The Rise of Generative AI
+    description: An in-depth look at the recent advancements in generative models and their impact across industries.
+    author: AI Engineer
+    date: '2024-05-20'
+    content: |
+      ### Table of Contents
+      * [Introduction: The Dawn of a New Creative Era](#introduction-the-dawn-of-a-new-creative-era)
+      * [What is Generative AI?](#what-is-generative-ai)
+      * [Key Technologies Driving the Revolution](#key-technologies-driving-the-revolution)
+      * [Applications Across Industries](#applications-across-industries)
+      * [Ethical Considerations and Future Challenges](#ethical-considerations-and-future-challenges)
+      * [Conclusion: The Road Ahead](#conclusion-the-road-ahead)
+
+      ---
+
+      ### Introduction: The Dawn of a New Creative Era
+      Generative AI is no longer a concept confined to science fiction or niche research labs. It has emerged as one of the most transformative technologies of our time. From creating breathtaking digital art to composing music and writing sophisticated code, models like GPT, DALL-E, and Midjourney are pushing the boundaries of what machines can create. This post explores the underlying technology, its vast applications, and the critical ethical considerations we must navigate as we step into this new era.
+      
+      ![The Rise of Generative AI](https://picsum.photos/seed/gen-ai/600/400)
+
+      ---
+
+      ### What is Generative AI?
+      At its core, Generative AI refers to a class of artificial intelligence models that can generate new, original content rather than simply analyzing or acting on existing data. Unlike traditional AI systems designed for classification or prediction, generative models learn the underlying patterns and structures of a dataset and use that knowledge to produce novel outputs. These outputs can be in the form of text, images, audio, or even complex data structures like 3D models.
+      
+      ---
+
+      ### Key Technologies Driving the Revolution
+      The recent explosion in generative capabilities is largely due to advancements in deep learning architectures, particularly:
+      - **Transformers:** This architecture, with its self-attention mechanism, has been foundational for Large Language Models (LLMs) like GPT-4. It allows models to weigh the importance of different words in a sequence, leading to a more nuanced understanding of context and semantics.
+      - **Generative Adversarial Networks (GANs):** GANs consist of two competing neural networks—a generator and a discriminator. The generator creates content, and the discriminator evaluates it, pushing the generator to produce increasingly realistic outputs. This technique has been highly influential in image generation.
+      - **Diffusion Models:** These models work by progressively adding noise to data and then learning to reverse the process. By starting with random noise, they can generate highly detailed and coherent images, and are the powerhouse behind models like Stable Diffusion and DALL-E 2.
+      ---
+
+      ### Applications Across Industries
+      The impact of generative AI is being felt across numerous sectors:
+
+      | Industry                  | Application                      | Impact                                                                 |
+      | ------------------------- | -------------------------------- | ---------------------------------------------------------------------- |
+      | **Creative Arts**         | Art, music, and story generation | Democratizing creativity and enabling new forms of expression.         |
+      | **Software Engineering**  | Code generation and autocompletion | Accelerating development cycles and assisting with complex tasks.      |
+      | **Healthcare**            | Drug discovery and synthetic data generation | Speeding up research and improving model training without compromising patient privacy. |
+      | **Entertainment**         | VFX, character creation, and scriptwriting | Streamlining production pipelines and enhancing visual storytelling. |
+
+      ---
+
+      ### Ethical Considerations and Future Challenges
+      As with any powerful technology, the rise of generative AI brings significant challenges. Issues of misinformation (deepfakes), copyright infringement, data privacy, and inherent model biases are at the forefront of the discussion. Establishing robust ethical guidelines, ensuring transparency in AI-generated content, and developing methods to detect malicious use are critical steps for responsible innovation.
+
+      ---
+
+      ### Conclusion: The Road Ahead
+      Generative AI is more than just a technological marvel; it is a catalyst for change. As these models become more capable and accessible, they will continue to reshape industries and redefine the relationship between humans and machines. The road ahead requires a balanced approach—one that fosters innovation while proactively addressing the ethical and societal implications to ensure a future where this technology benefits all of humanity.
+    tags: ['Generative AI', 'LLM', 'Ethics']
+    imageId: 'blog-1'
+
+  - id: '4'
+    slug: a-guide-to-rich-content
+    type: blog
+    title: A Guide to Creating Rich Content Posts
+    description: Learn how to add tables, charts, images, and more to your static blog posts.
+    author: AI Engineer
+    date: '2024-03-10'
+    content: |
+      ### Table of Contents
+      * [Introduction](#introduction)
+      * [Including Images](#including-images)
+      * [Creating Tables](#creating-tables)
+      * [Conclusion](#conclusion)
+
+      ---
+
+      ### Introduction
+      This is a sample blog post to demonstrate how you can include various types of content. You can edit this file to create your own posts. 
+      Creating engaging content often requires more than just text. This guide will walk you through adding different elements to your posts, such as images, charts, and tables.
+
+      ---
+
+      ### Including Images
+      You can easily include images in your posts using Markdown syntax.
+      ![Sample post image](https://picsum.photos/seed/sample-blog/800/600)
+      Make sure to provide good alt text for accessibility.
+
+      ---
+
+      ### Creating Tables
+      Markdown tables can be used to display structured data. The `prose` styling will automatically apply a clean design to your tables.
+      
+      | Model   | Parameters | Training Data Size |
+      | ------- | ---------- | ------------------ |
+      | LLM-A   | 1.5B       | 10TB               |
+      | LLM-B   | 7B         | 45TB               |
+      | LLM-C   | 70B        | 100TB              |
+
+      ---
+      
+      ### Conclusion
+      By combining these elements, you can create rich, informative, and visually appealing blog posts to showcase your expertise. Feel free to use this post as a template for your own content.
+    imageId: 'blog-sample'
+    tags: ['Guide', 'Tutorial', 'Next.js']
+  
+  - id: '5'
+    slug: linear-algebra-foundations
+    type: blog
+    title: Linear Algebra Foundations — From Scalars to Matrix Decomposition
+    description: A complete beginner-friendly guide to Linear Algebra covering scalars, vectors, matrices, tensors, operations, determinants, eigenvalues, orthogonality, and matrix decomposition.
+    author: AI Engineer
+    date: '2024-05-25'
+    content: |
+      ### Table of Contents
+      * [Introduction](#introduction)
+      * [Scalars, Vectors, Matrices, and Tensors](#scalars-vectors-matrices-and-tensors)
+      * [Matrix Operations](#matrix-operations)
+      * [Determinants and Rank](#determinants-and-rank)
+      * [Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+      * [Orthogonality and Orthonormality](#orthogonality-and-orthonormality)
+      * [Matrix Decomposition](#matrix-decomposition)
+      * [Conclusion](#conclusion)
+
+      ---
+
+      ### Introduction
+      Linear Algebra is the **language of mathematics and machine learning**.  
+      It provides the foundation for everything from neural networks to computer graphics.  
+      In this guide, we’ll start from the basics — scalars and vectors — and move up to advanced concepts like eigenvalues, orthogonality, and matrix decomposition.  
+      The goal is to make every concept simple and intuitive while covering the core ideas needed for real-world applications.
+
+      ---
+
+      ### Scalars, Vectors, Matrices, and Tensors
+      #### Scalars
+      A **scalar** is a single number — it has **magnitude** but no direction.  
+      Example: 5, -3.2, or π.  
+      In real-world terms, temperature (25°C) or time (10s) are scalars.
+
+      #### Vectors
+      A **vector** is an ordered list of numbers that represents both **magnitude and direction**.  
+      Example:
+      $$
+      \mathbf{v} = [3, 4]
+      $$
+      represents a point or direction in 2D space.
+
+      #### Matrices
+      A **matrix** is a 2D array of numbers arranged in rows and columns.  
+      Example:
+      $$
+      A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}
+      $$
+      Matrices are used to store datasets or perform linear transformations.
+
+      #### Tensors
+      A **tensor** generalizes scalars, vectors, and matrices to higher dimensions.
+      - 0D → Scalar  
+      - 1D → Vector  
+      - 2D → Matrix  
+      - 3D or higher → Tensor  
+      Example: Images (height × width × channels) are 3D tensors used in deep learning.
+
+      ---
+
+      ### Matrix Operations
+      Matrix operations form the building blocks of data transformations.
+
+      #### 1. Addition and Subtraction
+      Two matrices can be added or subtracted **if they have the same shape**.
+      $$
+      A + B = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} + \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix}
+      $$
+
+      #### 2. Matrix Multiplication
+      The **dot product** rule applies.  
+      If A is (m×n) and B is (n×p), their product AB is (m×p):
+      $$
+      (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
+      $$
+      Used widely in machine learning and neural networks.
+
+      #### 3. Transpose
+      Flips the matrix over its diagonal:
+      $$
+      A^T = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}^T = \begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix}
+      $$
+
+      #### 4. Inverse
+      The inverse of a matrix $A^{-1}$ satisfies:
+      $$
+      AA^{-1} = A^{-1}A = I
+      $$
+      Only **square, non-singular matrices** have inverses.
+
+      ---
+
+      ### Determinants and Rank
+      #### Determinant
+      The **determinant** is a scalar that summarizes a square matrix’s properties.  
+      For a 2×2 matrix:
+      $$
+      det(A) = ad - bc
+      $$
+      - If det(A) ≠ 0 → invertible (non-singular)
+      - If det(A) = 0 → non-invertible (singular)
+
+      #### Properties
+      - Swapping two rows changes the sign.  
+      - Multiplying a row by c multiplies determinant by c.  
+      - Identical rows → determinant = 0.
+
+      #### Rank
+      The **rank** is the number of independent rows or columns.  
+      - Full rank: All rows/columns are independent.  
+      - Lower rank: Some are dependent.
+
+      **Relation:**  
+      If det(A) = 0 → rank < n  
+      If det(A) ≠ 0 → rank = n
+
+      ---
+
+      ### Eigenvalues and Eigenvectors
+      Eigenvalues and eigenvectors describe how a matrix transforms space.
+
+      #### Definition
+      For matrix A:
+      $$
+      A\mathbf{v} = \lambda\mathbf{v}
+      $$
+      - $\mathbf{v}$: eigenvector  
+      - $\lambda$: eigenvalue  
+
+      The vector direction stays the same, only its magnitude changes by $\lambda$.
+
+      #### Finding Eigenvalues
+      Solve the **characteristic equation**:
+      $$
+      det(A - \lambda I) = 0
+      $$
+
+      #### Geometric View
+      Eigenvectors point in directions that remain unchanged under transformation.  
+      Eigenvalues show how much they stretch or shrink.
+
+      #### Applications
+      - Principal Component Analysis (PCA)  
+      - Stability analysis  
+      - Vibration analysis  
+      - Image compression
+
+      ---
+
+      ### Orthogonality and Orthonormality
+      Orthogonality is the concept of **perpendicular vectors** in space.
+
+      #### Orthogonal Vectors
+      Two vectors $\mathbf{u}$ and $\mathbf{v}$ are orthogonal if:
+      $$
+      \mathbf{u} \cdot \mathbf{v} = 0
+      $$
+      They share no component — meaning they’re independent.
+
+      #### Orthonormal Vectors
+      A set of vectors is **orthonormal** if:
+      - They’re all orthogonal to each other.
+      - Each has a unit length (magnitude = 1).
+
+      Example:
+      $$
+      Q = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+      $$
+      is orthonormal because $Q^TQ = I$.
+
+      #### Why It Matters
+      Orthonormality simplifies calculations, preserves distances, and is central to numerical stability in machine learning.
+
+      ---
+
+      ### Matrix Decomposition
+      Matrix decomposition breaks complex matrices into simpler, structured parts.
+
+      #### LU Decomposition
+      Splits a matrix into:
+      $$
+      A = LU
+      $$
+      - L: lower triangular  
+      - U: upper triangular  
+      Useful for solving systems of equations efficiently.
+
+      #### QR Decomposition
+      Expresses A as:
+      $$
+      A = QR
+      $$
+      - Q: orthogonal matrix  
+      - R: upper triangular  
+      Used in regression and numerical methods.
+
+      #### Singular Value Decomposition (SVD)
+      A powerful factorization:
+      $$
+      A = UΣV^T
+      $$
+      - U and V: orthogonal matrices  
+      - Σ: diagonal matrix of singular values  
+
+      **Applications:**  
+      - Dimensionality reduction (PCA)  
+      - Image compression  
+      - Noise reduction
+
+      ---
+
+      ### Conclusion
+      Linear Algebra is the mathematical engine behind AI, physics, and engineering.  
+      From simple scalars to SVD, every concept builds upon the previous one.  
+      Once you master these foundations, you’ll understand how algorithms like PCA, neural networks, and deep learning truly work — all powered by the magic of matrices.
+    tags: ['Linear Algebra', 'Matrix Operations', 'Eigenvalues', 'SVD', 'Orthogonality']
+    imageId: 'math-all'
