@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import data from './src/lib/data.json';
+import data from './data.json';
 
 export type Resource = {
   id: string;
@@ -38,7 +38,6 @@ type AppData = {
 }
 
 
-// export const resources: Resource[] = data.resources;
-// export const profile: Profile = data.profile;
+export const resources: Resource[] = data.resources;
+export const profile: Profile = data.profile;
 
-export const { profile, resources } = data;
