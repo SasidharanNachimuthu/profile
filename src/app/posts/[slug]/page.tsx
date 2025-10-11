@@ -23,7 +23,7 @@ export async function generateStaticParams(): Promise<Params[]> {
 }
 
 // Make PostPage async to satisfy App Router
-export default async function PostPage({ params }: PostPageProps) {
+export default function PostPage({ params }: PostPageProps) {
   const resource: Resource | undefined = resources.find(
     (r) => r.slug === params.slug
   );
