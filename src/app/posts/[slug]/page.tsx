@@ -27,7 +27,7 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
     }));
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
   const resource: Resource | undefined = resources.find((r) => r.slug === params.slug);
 
   if (!resource) {
