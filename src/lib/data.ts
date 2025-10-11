@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import data from './data.json';
+import data from './src/lib/data.json';
 
 export type Resource = {
   id: string;
