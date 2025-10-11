@@ -11,8 +11,15 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import 'katex/dist/katex.min.css'
 import { BackButtonHeader } from "@/components/back-button-header"
+import { Resource } from "@/lib/data";
 
-export async function generateStaticParams() {
+type PostPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return resources
     .filter((resource) => resource && resource.slug)
     .map((resource) => ({
@@ -21,10 +28,10 @@ export async function generateStaticParams() {
 }
 
 export default function PostPage({ params }: { params: { slug: string } }) {
-  const resource = resources.find((r) => r.slug === params.slug)
+  const resource: Resource | undefined = resources.find((r) => r.slug === params.slug);
 
   if (!resource) {
-    notFound()
+    notFound();
   }
 
   const Icon = resource.type === 'blog' ? PenSquare : Briefcase;
