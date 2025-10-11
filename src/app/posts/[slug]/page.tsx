@@ -12,12 +12,6 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import 'katex/dist/katex.min.css'
 import { BackButtonHeader } from "@/components/back-button-header"
 
-type PostPageProps = {
-  params: {
-    slug: string
-  }
-}
-
 export async function generateStaticParams() {
   return resources
     .filter((resource) => resource && resource.slug)
@@ -26,7 +20,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function PostPage({ params }: PostPageProps) {
+export default function PostPage({ params }: { params: { slug: string } }) {
   const resource = resources.find((r) => r.slug === params.slug)
 
   if (!resource) {
