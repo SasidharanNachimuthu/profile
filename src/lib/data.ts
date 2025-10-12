@@ -14,7 +14,7 @@ export type Resource = {
   content: string;
   imageId?: string;
   tags?: string[];
-  url?: string;
+  url?: string | null;
   githubUrl?: string;
 };
 
@@ -38,6 +38,8 @@ type AppData = {
 }
 
 
-export const resources: Resource[] = data.resources;
+export const resources: Resource[] = (data.resources as any[]).filter(
+  (r) => r.type === "blog" || r.type === "project"
+) as Resource[];
 export const profile: Profile = data.profile;
 
