@@ -12,8 +12,10 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import "katex/dist/katex.min.css";
 import { BackButtonHeader } from "@/components/back-button-header";
 
+type Params = { slug: string };
+
 type PostPageProps = {
-  params: Promise<{ slug: string }>
+  params: Promise<Params>
 };
 
 // Explicitly type generateStaticParams
