@@ -12,8 +12,9 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import "katex/dist/katex.min.css";
 import { BackButtonHeader } from "@/components/back-button-header";
 
-type Params = { slug: string };
-type PostPageProps = { params: Params };
+type PostPageProps = {
+  params: Promise<{ slug: string }>
+};
 
 // Explicitly type generateStaticParams
 export async function generateStaticParams(): Promise<Params[]> {
@@ -23,9 +24,10 @@ export async function generateStaticParams(): Promise<Params[]> {
 }
 
 // Make PostPage async to satisfy App Router
-export default function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params }: PostPageProps) {
+  const resolvedParams = await params;
   const resource: Resource | undefined = resources.find(
-    (r) => r.slug === params.slug
+    (r) => r.slug === resolvedParams.slug
   );
 
   if (!resource) {
