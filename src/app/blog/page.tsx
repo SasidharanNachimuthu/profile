@@ -3,7 +3,9 @@ import { ResourceCard } from '@/components/resource-card';
 import { BackButtonHeader } from '@/components/back-button-header';
 
 export default function BlogPage() {
-  const blogPosts = resources.filter(r => r.type === 'blog');
+  const blogPosts = resources
+    .filter(r => r.type === 'blog')
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="flex flex-col h-screen">

@@ -3,7 +3,9 @@ import { ResourceCard } from '@/components/resource-card';
 import { BackButtonHeader } from '@/components/back-button-header';
 
 export default function ProjectsPage() {
-  const projects = resources.filter(r => r.type === 'project');
+  const projects = resources
+    .filter(r => r.type === 'project')
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="flex flex-col h-screen">
