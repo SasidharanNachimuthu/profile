@@ -3,6 +3,20 @@ import path from 'path';
 import yaml from 'js-yaml';
 import data from './data.json';
 
+type RawProfile = {
+    name: string;
+    bio: string;
+    skills?: string[];
+    avatarImageId: string;
+    email: string;
+    location?: string;
+    social: {
+        github?: string;
+        twitter?: string;
+        linkedin?: string;
+    }
+};
+
 export type Resource = {
   id: string;
   slug: string;
@@ -30,16 +44,22 @@ export type Profile = {
         twitter: string;
         linkedin: string;
     }
-};
-
-type AppData = {
-    profile: Profile;
-    resources: Resource[];
 }
 
+const rawProfile: RawProfile = data.profile;
+
+export const profile: Profile = {
+  ...rawProfile,
+  skills: rawProfile.skills ?? [],
+  location: rawProfile.location ?? '',
+  social: {
+    github: rawProfile.social?.github ?? '',
+    twitter: rawProfile.social?.twitter ?? '',
+    linkedin: rawProfile.social?.linkedin ?? '',
+  },
+};
 
 export const resources: Resource[] = (data.resources as any[]).filter(
   (r) => r.type === "blog" || r.type === "project"
 ) as Resource[];
-export const profile: Profile = data.profile;
 
