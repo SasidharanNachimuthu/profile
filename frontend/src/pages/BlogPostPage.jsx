@@ -4,13 +4,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import frontMatter from "front-matter";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import posts from "@/content/posts";
 
 export default function BlogPostPage() {
     const { slug } = useParams();
     const [content, setContent] = useState("");
-    const [meta, setMeta] = useState(null);
     const [status, setStatus] = useState("loading");
 
     const post = posts.find((p) => p.slug === slug);
@@ -29,7 +27,6 @@ export default function BlogPostPage() {
             })
             .then((raw) => {
                 const parsed = frontMatter(raw);
-                setMeta(parsed.attributes || {});
                 setContent(parsed.body || raw);
                 setStatus("ready");
             })
@@ -43,21 +40,26 @@ export default function BlogPostPage() {
     if (!post) {
         return (
             <div
-                className="px-6 sm:px-12 py-32 max-w-3xl mx-auto"
+                className="px-6 sm:px-10 py-16 max-w-3xl mx-auto"
                 data-testid="blog-post-missing"
             >
-                <p className="label-eyebrow mb-6">Not found</p>
-                <h1
-                    className="font-serif text-5xl mb-6"
-                    style={{ fontWeight: 400 }}
+                <p
+                    className="font-mono text-sm mb-4"
+                    style={{ color: "var(--text-secondary)" }}
                 >
-                    No entry by that name.
+                    404 · not found
+                </p>
+                <h1
+                    className="font-serif text-3xl mb-6"
+                    style={{ fontWeight: 500 }}
+                >
+                    No post by that name.
                 </h1>
                 <Link
                     to="/blog"
-                    className="editorial-link label-eyebrow inline-flex gap-2 items-center"
+                    className="font-mono text-sm editorial-link"
                 >
-                    <ArrowLeft size={14} /> Back to Journal
+                    ← back to writing
                 </Link>
             </div>
         );
@@ -68,169 +70,155 @@ export default function BlogPostPage() {
     const prev = posts[currentIndex + 1];
 
     return (
-        <article data-testid="blog-post-page">
-            {/* HEADER */}
-            <header
-                className="px-6 sm:px-12 pt-16 sm:pt-24 pb-12 border-b"
-                style={{ borderColor: "var(--border-color)" }}
-            >
-                <div className="max-w-3xl mx-auto">
-                    <Link
-                        to="/blog"
-                        className="editorial-link label-eyebrow inline-flex gap-2 items-center mb-10"
-                        data-testid="blog-post-back-link"
-                    >
-                        <ArrowLeft size={14} strokeWidth={1.5} /> Journal
-                    </Link>
+        <article
+            className="px-6 sm:px-10 py-12 sm:py-16"
+            data-testid="blog-post-page"
+        >
+            <div className="max-w-2xl mx-auto">
+                <Link
+                    to="/blog"
+                    className="font-mono text-sm editorial-link inline-block mb-10"
+                    style={{ color: "var(--text-secondary)" }}
+                    data-testid="blog-post-back-link"
+                >
+                    ← writing
+                </Link>
 
-                    <div className="flex flex-wrap gap-3 mb-8">
-                        {post.tags?.map((t) => (
-                            <span
-                                key={t}
-                                className="text-xs px-3 py-1 border"
-                                style={{
-                                    borderColor: "var(--border-color)",
-                                    color: "var(--text-secondary)",
-                                }}
-                            >
-                                {t}
-                            </span>
-                        ))}
-                    </div>
-
+                <header
+                    className="mb-10 pb-6 border-b"
+                    style={{ borderColor: "var(--border-color)" }}
+                >
                     <h1
-                        className="font-serif tracking-tight leading-[1.02] mb-8"
+                        className="font-serif tracking-tight leading-tight mb-3"
                         style={{
-                            fontSize: "clamp(2.5rem, 6vw, 5rem)",
-                            fontWeight: 400,
+                            fontSize: "clamp(2rem, 4vw, 2.5rem)",
+                            fontWeight: 500,
+                            color: "var(--text-primary)",
                         }}
                         data-testid="blog-post-title"
                     >
                         {post.title}
                     </h1>
-
                     <div
-                        className="flex flex-wrap gap-6 label-eyebrow"
+                        className="font-mono text-xs flex flex-wrap gap-x-4 gap-y-1"
                         style={{ color: "var(--text-secondary)" }}
                     >
-                        <span>{formatDate(post.date)}</span>
+                        <span>{formatLong(post.date)}</span>
                         <span>·</span>
                         <span>{post.readTime}</span>
+                        {post.tags?.length > 0 && (
+                            <>
+                                <span>·</span>
+                                <span>{post.tags.join(" / ")}</span>
+                            </>
+                        )}
                     </div>
-                </div>
-            </header>
+                </header>
 
-            {/* BODY */}
-            <section className="px-6 sm:px-12 py-16 sm:py-24">
-                <div className="max-w-2xl mx-auto">
-                    {status === "loading" && (
-                        <div
-                            className="font-serif italic"
+                {status === "loading" && (
+                    <p
+                        className="font-mono text-sm"
+                        style={{ color: "var(--text-secondary)" }}
+                        data-testid="blog-post-loading"
+                    >
+                        loading…
+                    </p>
+                )}
+
+                {status === "error" && (
+                    <div data-testid="blog-post-error">
+                        <p
+                            className="text-base mb-3"
+                            style={{ color: "var(--text-primary)" }}
+                        >
+                            This post isn't available yet.
+                        </p>
+                        <p
+                            className="text-sm"
                             style={{ color: "var(--text-secondary)" }}
-                            data-testid="blog-post-loading"
                         >
-                            Setting the type…
-                        </div>
-                    )}
+                            The file{" "}
+                            <code className="font-mono text-xs px-1 py-0.5"
+                                style={{ backgroundColor: "var(--bg-secondary)" }}>
+                                public/blog/{slug}.md
+                            </code>{" "}
+                            wasn't found in the repo.
+                        </p>
+                    </div>
+                )}
 
-                    {status === "error" && (
-                        <div data-testid="blog-post-error">
-                            <p
-                                className="font-serif text-2xl mb-4"
-                                style={{ color: "var(--text-primary)" }}
-                            >
-                                This entry isn't available yet.
-                            </p>
-                            <p style={{ color: "var(--text-secondary)" }}>
-                                The markdown file{" "}
-                                <code
-                                    style={{
-                                        backgroundColor: "var(--bg-secondary)",
-                                        padding: "2px 6px",
-                                    }}
+                {status === "ready" && (
+                    <div
+                        className="prose-editorial"
+                        data-testid="blog-post-content"
+                    >
+                        <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                        >
+                            {content}
+                        </ReactMarkdown>
+                    </div>
+                )}
+
+                {/* PAGINATION */}
+                {(prev || next) && (
+                    <nav
+                        className="mt-16 pt-6 border-t grid grid-cols-2 gap-6 font-mono text-sm"
+                        style={{ borderColor: "var(--border-color)" }}
+                    >
+                        <div>
+                            {prev && (
+                                <Link
+                                    to={`/blog/${prev.slug}`}
+                                    className="block group"
+                                    data-testid="blog-post-prev-link"
                                 >
-                                    public/blog/{slug}.md
-                                </code>{" "}
-                                wasn't found. Add it to the repo to publish.
-                            </p>
+                                    <p
+                                        className="text-xs mb-1"
+                                        style={{ color: "var(--text-secondary)" }}
+                                    >
+                                        ← older
+                                    </p>
+                                    <p
+                                        className="group-hover:underline underline-offset-4"
+                                        style={{ color: "var(--text-primary)" }}
+                                    >
+                                        {prev.title}
+                                    </p>
+                                </Link>
+                            )}
                         </div>
-                    )}
-
-                    {status === "ready" && (
-                        <div
-                            className="prose-editorial"
-                            data-testid="blog-post-content"
-                        >
-                            <ReactMarkdown
-                                remarkPlugins={[remarkGfm]}
-                                rehypePlugins={[rehypeRaw]}
-                            >
-                                {content}
-                            </ReactMarkdown>
+                        <div className="text-right">
+                            {next && (
+                                <Link
+                                    to={`/blog/${next.slug}`}
+                                    className="block group"
+                                    data-testid="blog-post-next-link"
+                                >
+                                    <p
+                                        className="text-xs mb-1"
+                                        style={{ color: "var(--text-secondary)" }}
+                                    >
+                                        newer →
+                                    </p>
+                                    <p
+                                        className="group-hover:underline underline-offset-4"
+                                        style={{ color: "var(--text-primary)" }}
+                                    >
+                                        {next.title}
+                                    </p>
+                                </Link>
+                            )}
                         </div>
-                    )}
-                </div>
-            </section>
-
-            {/* PAGINATION */}
-            <nav
-                className="px-6 sm:px-12 py-16 border-t grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1400px] mx-auto"
-                style={{ borderColor: "var(--border-color)" }}
-            >
-                <div>
-                    {prev ? (
-                        <Link
-                            to={`/blog/${prev.slug}`}
-                            className="block group hover-lift"
-                            data-testid="blog-post-prev-link"
-                        >
-                            <p
-                                className="label-eyebrow mb-3 inline-flex items-center gap-2"
-                                style={{ color: "var(--text-secondary)" }}
-                            >
-                                <ArrowLeft size={12} /> Previous
-                            </p>
-                            <p
-                                className="font-serif text-2xl"
-                                style={{ color: "var(--text-primary)", fontWeight: 400 }}
-                            >
-                                {prev.title}
-                            </p>
-                        </Link>
-                    ) : (
-                        <span />
-                    )}
-                </div>
-                <div className="md:text-right">
-                    {next ? (
-                        <Link
-                            to={`/blog/${next.slug}`}
-                            className="block group hover-lift"
-                            data-testid="blog-post-next-link"
-                        >
-                            <p
-                                className="label-eyebrow mb-3 inline-flex items-center gap-2 md:justify-end md:w-full"
-                                style={{ color: "var(--text-secondary)" }}
-                            >
-                                Next <ArrowUpRight size={12} />
-                            </p>
-                            <p
-                                className="font-serif text-2xl"
-                                style={{ color: "var(--text-primary)", fontWeight: 400 }}
-                            >
-                                {next.title}
-                            </p>
-                        </Link>
-                    ) : (
-                        <span />
-                    )}
-                </div>
-            </nav>
+                    </nav>
+                )}
+            </div>
         </article>
     );
 }
 
-function formatDate(iso) {
+function formatLong(iso) {
     const d = new Date(iso);
     return d.toLocaleDateString("en-US", {
         year: "numeric",

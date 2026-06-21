@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
 import { profile } from "@/content/portfolio";
 
 export default function Header() {
@@ -12,45 +11,36 @@ export default function Header() {
     }, [location.pathname]);
 
     const navItems = [
-        { to: "/", label: "Index", end: true },
-        { to: "/#work", label: "Work" },
-        { to: "/#about", label: "About" },
-        { to: "/blog", label: "Journal" },
-        { to: "/#contact", label: "Contact" },
+        { to: "/", label: "home", end: true },
+        { to: "/#work", label: "projects" },
+        { to: "/#writing", label: "writing" },
+        { to: "/blog", label: "blog" },
+        { to: "/#contact", label: "contact" },
     ];
 
     return (
         <header
+            id="top"
             className="sticky top-0 z-50 border-b"
             style={{
                 borderColor: "var(--border-color)",
-                backgroundColor: "rgba(250, 249, 246, 0.78)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
+                backgroundColor: "rgba(250, 249, 246, 0.82)",
+                backdropFilter: "blur(14px)",
+                WebkitBackdropFilter: "blur(14px)",
             }}
             data-testid="site-header"
         >
-            <div className="max-w-[1400px] mx-auto px-6 sm:px-12 h-16 flex items-center justify-between">
+            <div className="max-w-3xl mx-auto px-6 sm:px-10 h-12 flex items-center justify-between">
                 <Link
                     to="/"
-                    className="flex items-center gap-3 group"
+                    className="font-mono text-sm tracking-tight"
+                    style={{ color: "var(--text-primary)" }}
                     data-testid="header-logo-link"
                 >
-                    <span
-                        className="font-serif text-2xl leading-none"
-                        style={{ color: "var(--text-primary)" }}
-                    >
-                        {profile.initials || profile.name.split(" ")[0]}
-                    </span>
-                    <span
-                        className="label-eyebrow hidden sm:inline-block"
-                        style={{ color: "var(--text-secondary)" }}
-                    >
-                        / Portfolio
-                    </span>
+                    ~/{profile.initials || profile.handle}
                 </Link>
 
-                <nav className="hidden md:flex items-center gap-10">
+                <nav className="hidden sm:flex items-center gap-5 font-mono text-sm">
                     {navItems.map((item) => (
                         <NavItem key={item.to} {...item} />
                     ))}
@@ -59,23 +49,23 @@ export default function Header() {
                 <button
                     type="button"
                     aria-label="Toggle menu"
-                    className="md:hidden p-2 -mr-2"
+                    className="sm:hidden font-mono text-sm"
                     onClick={() => setOpen((v) => !v)}
                     data-testid="header-mobile-menu-toggle"
                 >
-                    {open ? <X size={20} /> : <Menu size={20} />}
+                    {open ? "close" : "menu"}
                 </button>
             </div>
 
             {open && (
                 <div
-                    className="md:hidden border-t"
+                    className="sm:hidden border-t"
                     style={{ borderColor: "var(--border-color)" }}
                     data-testid="mobile-menu"
                 >
-                    <div className="max-w-[1400px] mx-auto px-6 py-6 flex flex-col gap-4">
+                    <div className="max-w-3xl mx-auto px-6 py-4 flex flex-col gap-3 font-mono text-sm">
                         {navItems.map((item) => (
-                            <NavItem key={item.to} {...item} mobile />
+                            <NavItem key={item.to} {...item} />
                         ))}
                     </div>
                 </div>
@@ -84,19 +74,15 @@ export default function Header() {
     );
 }
 
-function NavItem({ to, label, end, mobile }) {
+function NavItem({ to, label, end }) {
     const isHash = to.includes("#");
-    const baseClasses = mobile
-        ? "text-base tracking-wide"
-        : "label-eyebrow";
-
     if (isHash) {
         return (
             <a
                 href={to}
-                className={`${baseClasses} editorial-link`}
+                className="editorial-link"
                 style={{ color: "var(--text-primary)" }}
-                data-testid={`nav-link-${label.toLowerCase()}`}
+                data-testid={`nav-link-${label}`}
             >
                 {label}
             </a>
@@ -107,10 +93,10 @@ function NavItem({ to, label, end, mobile }) {
             to={to}
             end={end}
             className={({ isActive }) =>
-                `${baseClasses} editorial-link ${isActive ? "opacity-100" : "opacity-70"}`
+                `editorial-link ${isActive ? "opacity-100" : "opacity-70 hover:opacity-100"}`
             }
             style={{ color: "var(--text-primary)" }}
-            data-testid={`nav-link-${label.toLowerCase()}`}
+            data-testid={`nav-link-${label}`}
         >
             {label}
         </NavLink>

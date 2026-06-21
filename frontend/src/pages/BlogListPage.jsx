@@ -1,140 +1,115 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
 import posts from "@/content/posts";
 
 export default function BlogListPage() {
-    return (
-        <div data-testid="blog-list-page">
-            {/* HEADER */}
-            <section
-                className="px-6 sm:px-12 pt-16 sm:pt-24 pb-16 border-b"
-                style={{ borderColor: "var(--border-color)" }}
-            >
-                <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-6">
-                    <div className="col-span-12 md:col-span-3">
-                        <p className="label-eyebrow">(01) The Journal</p>
-                    </div>
-                    <div className="col-span-12 md:col-span-9">
-                        <h1
-                            className="font-serif tracking-tight leading-[0.95] mb-8"
-                            style={{
-                                fontSize: "clamp(3rem, 8vw, 7rem)",
-                                fontWeight: 300,
-                            }}
-                            data-testid="blog-list-headline"
-                        >
-                            Notes from <span className="italic">the desk</span>.
-                        </h1>
-                        <p
-                            className="text-lg sm:text-xl max-w-2xl leading-relaxed"
-                            style={{ color: "var(--text-secondary)" }}
-                        >
-                            Essays on craft, software that respects attention,
-                            and the slow work of making things worth keeping.
-                            Updated when there's something worth saying.
-                        </p>
-                    </div>
-                </div>
-            </section>
+    // group posts by year (newest first)
+    const byYear = posts.reduce((acc, p) => {
+        const year = new Date(p.date).getFullYear();
+        if (!acc[year]) acc[year] = [];
+        acc[year].push(p);
+        return acc;
+    }, {});
+    const years = Object.keys(byYear).sort((a, b) => b - a);
 
-            {/* POST LIST */}
-            <section className="px-6 sm:px-12 py-16">
-                <div className="max-w-[1400px] mx-auto">
+    return (
+        <div
+            className="px-6 sm:px-10 py-12 sm:py-16"
+            data-testid="blog-list-page"
+        >
+            <div className="max-w-3xl mx-auto">
+                <header className="mb-12">
+                    <h1
+                        className="font-serif tracking-tight leading-tight mb-3"
+                        style={{
+                            fontSize: "clamp(2rem, 4.5vw, 3rem)",
+                            fontWeight: 500,
+                        }}
+                        data-testid="blog-list-headline"
+                    >
+                        Writing
+                    </h1>
                     <p
-                        className="label-eyebrow mb-8"
+                        className="text-base leading-relaxed max-w-2xl"
                         style={{ color: "var(--text-secondary)" }}
                     >
-                        ({posts.length.toString().padStart(2, "0")}) Entries
+                        Notes, essays, and the occasional technical write-up.
+                        Mostly about software, sometimes about how I work.
+                        Updated when there's something worth saying.
                     </p>
+                </header>
 
-                    <ul className="border-t" style={{ borderColor: "var(--border-color)" }}>
-                        {posts.map((post, idx) => (
-                            <li
-                                key={post.slug}
-                                className="border-b"
-                                style={{ borderColor: "var(--border-color)" }}
-                            >
-                                <Link
-                                    to={`/blog/${post.slug}`}
-                                    className="grid grid-cols-12 gap-6 py-10 sm:py-12 group hover-lift items-baseline"
-                                    data-testid={`blog-list-item-${post.slug}`}
+                {years.map((year) => (
+                    <section key={year} className="mb-10">
+                        <h2
+                            className="font-mono text-sm mb-4 pb-2 border-b"
+                            style={{
+                                color: "var(--text-secondary)",
+                                borderColor: "var(--border-color)",
+                            }}
+                        >
+                            {year}
+                        </h2>
+                        <ul className="divide-y" style={{ borderColor: "var(--border-color)" }}>
+                            {byYear[year].map((post) => (
+                                <li
+                                    key={post.slug}
+                                    className="py-3"
+                                    style={{ borderColor: "var(--border-color)" }}
                                 >
-                                    <div className="col-span-2 md:col-span-1">
+                                    <Link
+                                        to={`/blog/${post.slug}`}
+                                        className="grid grid-cols-[5rem_1fr_auto] gap-4 items-baseline group"
+                                        data-testid={`blog-list-item-${post.slug}`}
+                                    >
                                         <span
-                                            className="font-mono text-sm"
+                                            className="font-mono text-xs tabular-nums"
                                             style={{ color: "var(--text-secondary)" }}
                                         >
-                                            {String(posts.length - idx).padStart(2, "0")}
+                                            {formatShort(post.date)}
                                         </span>
-                                    </div>
-                                    <div className="col-span-10 md:col-span-7">
-                                        <h2
-                                            className="font-serif text-3xl sm:text-5xl tracking-tight leading-tight mb-3"
-                                            style={{
-                                                color: "var(--text-primary)",
-                                                fontWeight: 400,
-                                            }}
-                                        >
-                                            {post.title}
-                                        </h2>
-                                        <p
-                                            className="text-base leading-relaxed max-w-2xl"
-                                            style={{ color: "var(--text-secondary)" }}
-                                        >
-                                            {post.excerpt}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2 mt-4">
-                                            {post.tags?.map((t) => (
-                                                <span
-                                                    key={t}
-                                                    className="text-xs px-3 py-1 border"
-                                                    style={{
-                                                        borderColor: "var(--border-color)",
-                                                        color: "var(--text-secondary)",
-                                                    }}
-                                                >
-                                                    {t}
-                                                </span>
-                                            ))}
+                                        <div>
+                                            <p
+                                                className="text-base group-hover:underline underline-offset-4"
+                                                style={{ color: "var(--text-primary)" }}
+                                            >
+                                                {post.title}
+                                            </p>
+                                            <p
+                                                className="text-sm mt-1 hidden sm:block"
+                                                style={{ color: "var(--text-secondary)" }}
+                                            >
+                                                {post.excerpt}
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div className="col-span-12 md:col-span-3 md:text-right">
-                                        <p
-                                            className="label-eyebrow"
-                                            style={{ color: "var(--text-secondary)" }}
-                                        >
-                                            {formatDate(post.date)}
-                                        </p>
-                                        <p
-                                            className="font-serif italic mt-1"
+                                        <span
+                                            className="font-mono text-xs hidden sm:inline-block"
                                             style={{ color: "var(--text-secondary)" }}
                                         >
                                             {post.readTime}
-                                        </p>
-                                    </div>
-                                    <div className="col-span-12 md:col-span-1 flex md:justify-end">
-                                        <ArrowUpRight
-                                            size={24}
-                                            strokeWidth={1}
-                                            className="transition-transform duration-500 group-hover:rotate-45"
-                                            style={{ color: "var(--text-primary)" }}
-                                        />
-                                    </div>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </section>
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                ))}
+
+                {posts.length === 0 && (
+                    <p
+                        className="font-serif italic text-lg"
+                        style={{ color: "var(--text-secondary)" }}
+                    >
+                        Nothing yet. Soon.
+                    </p>
+                )}
+            </div>
         </div>
     );
 }
 
-function formatDate(iso) {
+function formatShort(iso) {
     const d = new Date(iso);
-    return d.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
+    return d
+        .toLocaleDateString("en-US", { month: "short", day: "2-digit" })
+        .toLowerCase();
 }

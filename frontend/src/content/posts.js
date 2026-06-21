@@ -6,29 +6,29 @@
 const posts = [
     {
         slug: "on-quiet-software",
-        title: "On Quiet Software",
+        title: "On quiet software",
         date: "2025-09-14",
         readTime: "6 min",
         excerpt:
-            "Most software is loud — chasing your attention, your time, your data. A note on building the other kind.",
+            "Most software is loud. A short note on building the other kind.",
         tags: ["essay", "craft"],
     },
     {
         slug: "writing-as-thinking",
-        title: "Writing as Thinking",
+        title: "Writing as thinking",
         date: "2025-07-02",
         readTime: "4 min",
         excerpt:
-            "If you can't write it down, you probably haven't thought it through. A short defense of slow prose.",
+            "If you can't write it down, you probably haven't thought it through.",
         tags: ["writing"],
     },
     {
         slug: "the-folder-of-unsent-letters",
-        title: "The Folder of Unsent Letters",
+        title: "The folder of unsent letters",
         date: "2025-04-21",
         readTime: "5 min",
         excerpt:
-            "Why I keep a directory of essays no one will read, and what it has done for the ones I publish.",
+            "On keeping a directory of essays no one will read.",
         tags: ["essay", "process"],
     },
 ];
