@@ -19,23 +19,21 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
 
       - name: Setup Pages ⚙️
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: next
+        uses: actions/configure-pages@v6
 
-      - name: Build with Next.js 🏗️
-        run: npx next build
+      - name: Build 🏗️
+        run: npm run build
 
       - name: Upload artifact 📡
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
-          path: ./out
+          path: ./build
 
   deploy:
     environment:
@@ -48,4 +46,4 @@ jobs:
     steps:
       - name: Publish to GitHub Pages 🚀
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v6
