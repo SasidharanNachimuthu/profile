@@ -10,8 +10,8 @@ export const profile = {
     blurb:
         "I work on Agentic systems and Natural Language Processing. Currently at Fractal Analytics working on Automobile Voice Assistant. I write occasionally about what I'm building and learning.",
     avatarUrl:
-        "/img.jpg",
-        
+        `${process.env.PUBLIC_URL || "."}/img.jpg`,
+
     links: [
         { label: "github", href: "https://github.com/SasidharanNachimuthu" },
         // { label: "twitter", href: "https://twitter.com" },
