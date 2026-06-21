@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - main
 
 permissions:
   contents: read
@@ -28,7 +29,9 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Build 🏗️
-        run: npm run build
+        run: |
+          npm ci
+          PUBLIC_URL=/ npm run build
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v5
