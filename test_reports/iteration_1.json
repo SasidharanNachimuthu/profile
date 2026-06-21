@@ -1,0 +1,48 @@
+{
+  "summary": "Frontend-only e2e testing of the editorial portfolio (Home + Journal + Blog Post). 8/9 user flows pass. One CRITICAL HashRouter incompatibility bug: in-page anchor links (href starting with '#' or '/#section') replace the HashRouter route hash and navigate to the NotFoundPage instead of scrolling to the section.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "HomePage hero CTA",
+        "issue": "Clicking 'See the work' (data-testid='hero-cta-work') uses <a href=\"#work\">, which under HashRouter replaces the current '#/' route hash with '#work'. This matches route '*' and renders the 404 NotFoundPage instead of scrolling to the #work section. URL after click: '/#work', screen shows 'Nothing here, yet.' 404 page.",
+        "selector": "[data-testid='hero-cta-work']",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "Header nav (desktop & mobile)",
+        "issue": "nav items defined with to='/#work', '/#about', '/#contact' are rendered as plain <a href> via NavItem isHash branch. In HashRouter, navigating to '/#work' sets URL hash to 'work' (no leading slash) and routes to NotFoundPage. Reproduced: clicking 'Work' nav link from / -> 404 page. Same issue for About and Contact links.",
+        "selector": "[data-testid='nav-link-work'], [data-testid='nav-link-about'], [data-testid='nav-link-contact']",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "Footer sitemap links",
+        "issue": "Footer.jsx Sitemap renders plain <a href='/#work'> and <a href='/#about'>. Same HashRouter conflict — these will land users on the 404 page rather than scrolling to the in-page anchors.",
+        "selector": "footer a[href='/#work'], footer a[href='/#about']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix HashRouter + hash-anchor incompatibility. Recommended: implement onClick handlers that call document.getElementById('work').scrollIntoView({ behavior: 'smooth' }) and use preventDefault() instead of href='#work' / href='/#work'. Apply to hero-cta-work, Header NavItem hash branch (Work/About/Contact), Footer sitemap Work/About links, and journal-preview-section #contact references if any. Alternatively switch to BrowserRouter (but then github-pages deep links break) or use react-router-hash-link.",
+    "Verify after fix that clicking Work/About/Contact on Header/Hero/Footer scrolls smoothly to the corresponding section without navigating to NotFoundPage."
+  ],
+  "critical_code_review_comments": [
+    "HashRouter + in-page hash anchors are fundamentally incompatible. Header.jsx NavItem.isHash branch generates broken links by design.",
+    "BlogPostPage.jsx fetch uses process.env.PUBLIC_URL — verified working (markdown loaded and parsed with frontmatter + remarkGfm + rehypeRaw). No issues.",
+    "NotFoundPage is catch-all '*' route which is correctly silently absorbing the broken hash links — making the bug user-visible as a 404 instead of a no-op.",
+    "All required data-testid attributes are present and selectors work reliably.",
+    "Mobile menu auto-closes on route change (useEffect on location.pathname) — good UX."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "N/A (skipped per request)", "frontend": "78% (7/9 user-listed flows fully pass; in-page anchor scroll flow broken)" },
+  "test_credentials": "N/A",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All blog flows (list, post markdown rendering with heading/p/blockquote/code/list, back link, missing slug fallback, hero->journal link, header Journal link, mobile menu open with 5 nav links, footer mailto:hello@example.com) are PASSING. The only outstanding issue is the HashRouter + '#section' anchor incompatibility that affects hero-cta-work and Header/Footer Work/About/Contact links. After main agent fix, re-run only the hero-cta-work scroll test and Header Work/About/Contact nav clicks to confirm scroll-to-section without 404. App public URL: https://clean-folio-29.preview.emergentagent.com/ (HashRouter URLs: /#/, /#/blog, /#/blog/<slug>).",
+  "rca_of_the_issue": "Root cause: react-router-dom's HashRouter uses the URL hash to encode its route (e.g. '#/', '#/blog'). When a child component renders a plain <a href='#work'> or <a href='/#work'>, the browser replaces the entire hash portion with 'work' (or '/#work' rewrites to '#work' after relative resolution). HashRouter then sees pathname 'work' (no match) and routes to '*'/NotFoundPage. Fix: replace anchor-based scrolling with programmatic scrollIntoView, or wrap with react-router-hash-link's HashLink which preserves the route hash. Reproduction steps: (1) Open /#/, (2) click 'See the work' or header 'Work' nav, (3) URL becomes /#work, (4) 'Nothing here, yet.' 404 page is rendered."
+}
