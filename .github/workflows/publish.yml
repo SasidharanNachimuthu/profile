@@ -31,7 +31,7 @@ jobs:
       - name: Build 🏗️
         run: |
           npm ci
-          PUBLIC_URL=/ npm run build
+          PUBLIC_URL=. npm run build
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v5
