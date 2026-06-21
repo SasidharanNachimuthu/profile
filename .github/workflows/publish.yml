@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - main
 
 permissions:
   contents: read
@@ -31,7 +30,7 @@ jobs:
       - name: Build 🏗️
         run: |
           npm ci
-          PUBLIC_URL=/ npm run build
+          PUBLIC_URL=. npm run build
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v5
@@ -49,4 +48,4 @@ jobs:
     steps:
       - name: Publish to GitHub Pages 🚀
         id: deployment
-        uses: actions/deploy-pages@v6
+        uses: actions/deploy-pages@v5
