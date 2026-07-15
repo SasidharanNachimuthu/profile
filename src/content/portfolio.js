@@ -37,48 +37,16 @@ export const skills = [
     // "Distributed systems", "ML systems", "Compilers", "Numerical computing",
 ];
 
-// export const projects = [
-//     {
-//         year: "2025",
-//         title: "tinyrun",
-//         description:
-//             "A 600-line process supervisor written in Rust. Used in production by a few small teams. Mostly an excuse to learn epoll well.",
-//         link: "https://github.com/",
-//         tag: "open source",
-//     },
-//     {
-//         year: "2024",
-//         title: "torch-replay",
-//         description:
-//             "Deterministic replay of PyTorch training runs across nodes. Survives mixed precision, gradient accumulation, and most hardware swaps.",
-//         link: "https://github.com/",
-//         tag: "open source",
-//     },
-//     {
-//         year: "2024",
-//         title: "Margin Notes",
-//         description:
-//             "Collaborative annotation platform for research teams. Closed beta with 40+ universities. Tech: Next.js, Postgres, Tiptap.",
-//         link: "#",
-//         tag: "product",
-//     },
-//     {
-//         year: "2023",
-//         title: "fast-attention-bench",
-//         description:
-//             "Microbenchmarks comparing the major attention kernels on A100/H100. Numbers, not opinions.",
-//         link: "https://github.com/",
-//         tag: "open source",
-//     },
-//     {
-//         year: "2022",
-//         title: "ledger-cli plugin",
-//         description:
-//             "A small importer that turns Indian bank statements into plain-text ledger entries. Used by maybe a dozen people. One of them is me.",
-//         link: "https://github.com/",
-//         tag: "tool",
-//     },
-// ];
+export const projects = [
+    {
+        year: "2026",
+        title: "transformer-pytorch",
+        description:
+            "A PyTorch implementation of transformer model for number reversal task",
+        link: "https://github.com/SasidharanNachimuthu/transformer-pytorch",
+        tag: "transformer, pytorch, deep learning",
+    },
+];
 
 // export const talks = [
 //     {
