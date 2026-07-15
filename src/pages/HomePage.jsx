@@ -3,7 +3,7 @@ import {
     profile,
     about,
     skills,
-    // projects,
+    projects,
     // talks,
     // publications,
     contact,
@@ -133,7 +133,7 @@ export default function HomePage() {
                 </Section>
 
                 {/* PROJECTS */}
-                {/* <Section
+                <Section
                     id="work"
                     title="Projects"
                     data-testid="work-section"
@@ -187,7 +187,7 @@ export default function HomePage() {
                             </li>
                         ))}
                     </ul>
-                </Section> */}
+                </Section>
 
                 {/* TALKS */}
                 {/* <Section id="talks" title="Talks" data-testid="talks-section">
